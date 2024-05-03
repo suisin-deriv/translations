@@ -161,14 +161,13 @@ on:
   push:
     branches:
       - 'main'
+  schedule:
+    - cron: '0 */12 * * *'
 
 jobs:
   sync_translations:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout to main branch
-        uses: actions/checkout@v3
-
       - name: Sync translations
         uses: deriv-com/translations/.github/actions/extract_and_sync_translations@main
         with:
