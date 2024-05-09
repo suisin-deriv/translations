@@ -57,7 +57,9 @@ runs:
 
     - name: Run extract script
       shell: bash
-      run: npx deriv-extract-translations ${{ inputs.PROJECT_SOURCE_DIRECTORY }} --verbose
+      env:
+        PROJECT_SOURCE_DIRECTORY: ${{ inputs.PROJECT_SOURCE_DIRECTORY }}
+      run: npx deriv-extract-translations $PROJECT_SOURCE_DIRECTORY --verbose
     
     - name: Setup crowdin config
       shell: bash
