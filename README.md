@@ -36,14 +36,15 @@ To get started, one would need few things to setup first which are:
     - Create a new bucket in the R2 account.
     - Create a new access key in the R2 account.
 3. Add the following secrets to your repository:
-    - `CROWDIN_PROJECT_ID`: Open your crowdin project and navigate to `Tools` tab, you will be able to get the Project ID, store that in your github secrets
-    - `CROWDIN_PERSONAL_TOKEN`: This can be obtained by logging in to your crowdin account and clicking on your profile icon and goto `Settings > API` and create a new personal access token, store that in your github secrets
-    - `R2_ACCOUNT_ID`: R2 account ID from the Cloudflare R2 dashboard
-    - `R2_ACCESS_KEY_ID`: R2 access key ID from the Cloudflare R2 dashboard
-    - `R2_SECRET_ACCESS_KEY`: R2 secret access key from the Cloudflare R2 dashboard
-    - `R2_BUCKET_NAME`: R2 bucket name from the Cloudflare R2 dashboard
+    - `CROWDIN_PROJECT_ID`: Open your crowdin project and navigate to `Tools` tab, you will be able to get the Project ID, store that in your github secrets.
+    - `CROWDIN_PERSONAL_TOKEN`: This can be obtained by logging in to your crowdin account and clicking on your profile icon and goto `Settings > API` and create a new personal access token, store that in your github secrets.
+    - `R2_ACCOUNT_ID`: R2 account ID from the Cloudflare R2 dashboard.
+    - `R2_ACCESS_KEY_ID`: R2 access key ID from the Cloudflare R2 dashboard.
+    - `R2_SECRET_ACCESS_KEY`: R2 secret access key from the Cloudflare R2 dashboard.
+    - `R2_BUCKET_NAME`: R2 bucket name from the Cloudflare R2 dashboard.
 4. Add the following environment variable in your repository:
-    - `PROJECT_NAME`: Add project name in your environment variable which will be used for Cloudflare R2 folder name for translations
+    - `PROJECT_NAME`: Add project name in your environment variable which will be used for Cloudflare R2 folder name for translations.
+    - `CROWDIN_BRANCH_NAME`: Add the branch name for your crowdin project to separate the translations based on environment, this needs to be put into the environment variable instead of secret because the consumer of the package needs it while defining the `cdnUrl` to access the translations.
 5. Setup the github action to sync the translations to the CDN, refer to the [Syncing translations](#syncing-translations) section for more details.
 
 Install the package by running:
@@ -54,7 +55,7 @@ npm install @deriv-com/translations
 
 ### Setup
 
-- initialize translations in main component by importing and calling `initializeI18n` outside of the component function
+- initialize translations in main component by importing and calling `initializeI18n` outside of the component function.
 - pass the return value to the `TranslationProvider` component from `@deriv-com/translations`.
 - pass default language to the `TranslationProvider` component.
 
@@ -86,7 +87,7 @@ import initializeI18n from "@deriv-com/translations";
 initializeI18n({ cdnUrl: "https://cdn.example.com" });
 ```
 
-- For strings use either `localize(...)` or `<Localize />`
+- For strings use either `localize(...)` or `<Localize />`.
 
 ### `Localize` component example:
 
@@ -137,22 +138,22 @@ There is a github action that syncs the translations from Crowdin to the CDN.
 
 The action takes following inputs:
 
-- `PROJECT_SOURCE_DIRECTORY`: Source directory of your project by default it is `src`
-- `CROWDIN_BASE_PATH`: Base path of the translations in the Crowdin project by default it is `.`
-- `CROWDIN_BASE_URL`: Base URL of the CDN where the translations are stored, default is `https://api.crowdin.com`
-- `CROWDIN_BRANCH_NAME`: Running on production, test or staging etc
-- `CROWDIN_PROJECT_ID`: Crowdin project ID which can be found in the crowdin project settings
-- `CROWDIN_PERSONAL_TOKEN`: Crowdin personal token which can be found in the crowdin account settings
-- `R2_ACCOUNT_ID`: R2 account ID from the Cloudflare R2 dashboard
-- `R2_ACCESS_KEY_ID`: R2 access key ID from the Cloudflare R2 dashboard
-- `R2_SECRET_ACCESS_KEY`: R2 secret access key from the Cloudflare R2 dashboard
-- `R2_BUCKET_NAME`: R2 bucket name from the Cloudflare R2 dashboard
+- `PROJECT_SOURCE_DIRECTORY`: Source directory of your project by default it is `src`.
+- `CROWDIN_BASE_PATH`: Base path of the translations in the Crowdin project by default it is `.`.
+- `CROWDIN_BASE_URL`: Base URL of the CDN where the translations are stored, default is `https://api.crowdin.com`.
+- `CROWDIN_BRANCH_NAME`: Running on production, test or staging etc.
+- `CROWDIN_PROJECT_ID`: Crowdin project ID which can be found in the crowdin project settings.
+- `CROWDIN_PERSONAL_TOKEN`: Crowdin personal token which can be found in the crowdin account settings.
+- `R2_ACCOUNT_ID`: R2 account ID from the Cloudflare R2 dashboard.
+- `R2_ACCESS_KEY_ID`: R2 access key ID from the Cloudflare R2 dashboard.
+- `R2_SECRET_ACCESS_KEY`: R2 secret access key from the Cloudflare R2 dashboard.
+- `R2_BUCKET_NAME`: R2 bucket name from the Cloudflare R2 dashboard.
 
-Refer to the action file [here](https://github.com/deriv-com/translations/blob/main/.github/actions/extract_and_sync_translations/action.yml)
+Refer to the action file [here](https://github.com/deriv-com/translations/blob/main/.github/actions/extract_and_sync_translations/action.yml).
 
 ### Example usage of the action in the workflow file:
 
-Copy and paste the following workflow code in your repository in this path`.github/workflows/sync_translations.yml`
+Copy and paste the following workflow code in your repository in this path`.github/workflows/sync_translations.yml`.
 
 ```yaml
 name: Sync translations
@@ -172,7 +173,7 @@ jobs:
         uses: deriv-com/translations/.github/actions/extract_and_sync_translations@main
         with:
           PROJECT_NAME: ${{ env.PROJECT_NAME }}
-          CROWDIN_BRANCH_NAME: ${{ secrets.CROWDIN_BRANCH_NAME }}
+          CROWDIN_BRANCH_NAME: ${{ env.CROWDIN_BRANCH_NAME }}
           CROWDIN_BASE_URL: ${{ env.CROWDIN_BASE_URL }}
           CROWDIN_BASE_PATH: ${{ env.CROWDIN_BASE_PATH }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
