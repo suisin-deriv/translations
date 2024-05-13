@@ -82,7 +82,7 @@ runs:
     - name: Copy messages.json to en.json
       shell: bash
       run: |
-        mkdir -p ./translations && cp -f -R ./crowdin/messages.json ./translations/en.json
+        mkdir -p ./translations && cat ./crowdin/messages.json > ./translations/en.json
 
     - name: R2 Upload Action to upload translations to Cloudflare
       uses: ryand56/r2-upload-action@latest
