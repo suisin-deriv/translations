@@ -2,8 +2,6 @@ import { str as crc32 } from "crc-32";
 import i18next from "i18next";
 
 /**
- * @deprecated use the `localize` function from the `useTranslations` hook
- *
  * @param {string} string
  * @param {Record<string, unknown>} values
  * @returns {string}
