@@ -1,4 +1,5 @@
-import { Trans } from "react-i18next";
+import type { i18n } from "i18next";
+import { Trans, withTranslation } from "react-i18next";
 
 type TLocalizeProps = {
   i18n_default_text: string;
@@ -6,9 +7,11 @@ type TLocalizeProps = {
   components?: JSX.Element[];
   options?: Record<string, unknown>;
   shouldUnescape?: boolean;
+  i18n?: i18n;
 };
 
-export default function Localize({
+function Localize({
+  i18n,
   i18n_default_text,
   values,
   components,
@@ -18,6 +21,7 @@ export default function Localize({
   return (
     <Trans
       defaults={i18n_default_text}
+      i18n={i18n}
       values={values}
       components={components}
       tOptions={options}
@@ -25,3 +29,5 @@ export default function Localize({
     />
   );
 }
+
+export default withTranslation()(Localize);
