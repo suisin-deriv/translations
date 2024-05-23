@@ -31,14 +31,14 @@ export default function TranslationProvider({
 
   useEffect(() => {
     if (i18nInstance) {
-      const initialLang = i18nInstance.language;
+      const initialLang = i18nInstance.language || defaultLang || "";
       setCurrentLanguage(initialLang);
 
       i18nInstance.on("initialized", () => {
         setIsTranslationsLoaded(true);
       });
     }
-  }, [i18nInstance]);
+  }, [i18nInstance, defaultLang]);
 
   if (!i18nInstance || !isTranslationsLoaded) return null;
 
