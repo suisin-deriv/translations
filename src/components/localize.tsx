@@ -10,7 +10,7 @@ type TLocalizeProps = {
   i18n?: i18n;
 };
 
-function Localize({
+function LocalizeComponent({
   i18n,
   i18n_default_text,
   values,
@@ -30,4 +30,7 @@ function Localize({
   );
 }
 
-export default withTranslation()(Localize);
+const Localize: React.ComponentType<TLocalizeProps> =
+  withTranslation()(LocalizeComponent);
+
+export default Localize;
