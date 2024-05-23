@@ -16,7 +16,7 @@
     }
   },
   "private": false,
-  "version": "1.0.4",
+  "version": "1.2.4",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && cp ./src/scripts/deriv-extract-translations.cjs ./dist/deriv-extract-translations.cjs",
