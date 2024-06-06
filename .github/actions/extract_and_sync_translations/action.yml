@@ -82,7 +82,7 @@ runs:
         CROWDIN_BASE_PATH: ${{ inputs.CROWDIN_BASE_PATH }}
     - name: Copy messages.json (source file) as en.json to the translations folder.
       shell: bash
-      run: cp /crowdin/messages.json ./translations/en.json
+      run: cp ./crowdin/messages.json ./translations/en.json
     - name: R2 Upload Action to upload translations to Cloudflare
       uses: ryand56/r2-upload-action@latest
       with:
