@@ -142,6 +142,20 @@ const getKeyHash = (string) => crc32(string);
       (err) => console.log(err)
     );
 
+    // check if the directory of translations exist, if not create the directory of the translations first in the root
+    const translationsDir = path.resolve("./translations");
+
+    if (!fs.existsSync(translationsDir)) {
+      fs.mkdirSync(translationsDir)
+    }
+    // Add to en.json in translations directory
+    fs.writeFileSync(
+      path.resolve("./translations/en.json"),
+      JSON.stringify(messages_json),
+      "utf8",
+      (err) => console.log(err)
+    );
+
     console.log("********* Translation strings compiled successfully *********")
   } catch (e) {
     program.error(e);
