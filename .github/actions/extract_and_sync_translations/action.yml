@@ -1,5 +1,7 @@
 name: Sync Translations with CloudFlare
 description: Sync Crowdin translations of desired environment with cloudflare
+permissions:
+  contents: write
 
 inputs:
   PROJECT_NAME:
