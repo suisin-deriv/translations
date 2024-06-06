@@ -81,6 +81,7 @@ runs:
         CROWDIN_BASE_URL: ${{ inputs.CROWDIN_BASE_URL }}
         CROWDIN_BASE_PATH: ${{ inputs.CROWDIN_BASE_PATH }}
     - name: Set permissions
+      shell: bash
       run: chmod -R 755 ./translations
       
     - name: Copy messages.json (source file) as en.json to the translations folder.
