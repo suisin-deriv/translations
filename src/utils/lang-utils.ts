@@ -1,5 +1,7 @@
 import { constants } from "@utils/index";
 
+type LanguageCode = keyof typeof constants.ALL_LANGUAGES;
+
 export const getInitialLanguage = () => {
   const url_params = new URLSearchParams(window.location.search);
   const query_lang = url_params.get("lang");
@@ -18,9 +20,7 @@ export const getInitialLanguage = () => {
   return constants.DEFAULT_LANGUAGE;
 };
 
-export const loadIncontextTranslation = (
-  lang: keyof typeof constants.ALL_LANGUAGES
-) => {
+export const loadIncontextTranslation = (lang: LanguageCode) => {
   const is_ach = lang.toUpperCase() === "ACH";
   if (is_ach) {
     const jipt = document.createElement("script");
@@ -33,4 +33,23 @@ export const loadIncontextTranslation = (
         `;
     document.head.appendChild(jipt);
   }
+};
+
+/**
+ * Filter out unsupported languages and return an Object containing language code and language name
+ * @param excludedLanguages
+ * @returns Object containing language code and language name
+ */
+export const getAllowedLanguages = (
+  excludedLanguages: Omit<LanguageCode, "ACH">[] = []
+) => {
+  const unsupportedLanguages = ["ACH", ...excludedLanguages];
+  const languageList = Object.keys(constants.ALL_LANGUAGES)
+    .filter((key) => !unsupportedLanguages.includes(key))
+    .reduce((obj: { [key: string]: string }, key) => {
+      obj[key] = constants.ALL_LANGUAGES[key as LanguageCode];
+      return obj;
+    }, {});
+
+  return languageList;
 };
