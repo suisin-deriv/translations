@@ -15,7 +15,7 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime", "react-dom/client"],
+      external: ["react", "react-dom", "react-dom/client"],
       output: {
         assetFileNames: "assets/[name]",
         entryFileNames: "[name].js",
