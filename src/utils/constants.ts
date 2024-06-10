@@ -1,10 +1,10 @@
 export const ALL_LANGUAGES = Object.freeze({
   ACH: "Translations",
-  AR: "العربية",
   EN: "English",
-  ES: "Español",
+  AR: "العربية",
   BN: "বাংলা",
   DE: "Deutsch",
+  ES: "Español",
   FR: "Français",
   ID: "Indonesian",
   IT: "Italiano",
@@ -14,11 +14,11 @@ export const ALL_LANGUAGES = Object.freeze({
   SW: "Kiswahili",
   RU: "Русский",
   SI: "සිංහල",
+  TH: "ไทย",
   TR: "Türkçe",
   VI: "Tiếng Việt",
   ZH_CN: "简体中文",
   ZH_TW: "繁體中文",
-  TH: "ไทย",
 });
 
 export const LANGUAGE_KEY = "i18n_language";
