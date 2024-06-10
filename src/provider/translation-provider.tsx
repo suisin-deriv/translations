@@ -31,17 +31,11 @@ export default function TranslationProvider({
 
   useEffect(() => {
     if (i18nInstance) {
-      console.log("Library: i18nInstance initialized.");
       const initialLang = i18nInstance.language || defaultLang || "";
       setCurrentLanguage(initialLang);
       setIsTranslationsLoaded(true);
     }
   }, [i18nInstance, defaultLang]);
-
-  console.log("Library: ", {
-    i18nInstance,
-    isTranslationsLoaded,
-  });
 
   if (!i18nInstance || !isTranslationsLoaded) return null;
 
