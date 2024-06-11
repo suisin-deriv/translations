@@ -33,10 +33,7 @@ export default function TranslationProvider({
     if (i18nInstance) {
       const initialLang = i18nInstance.language || defaultLang || "";
       setCurrentLanguage(initialLang);
-
-      i18nInstance.on("initialized", () => {
-        setIsTranslationsLoaded(true);
-      });
+      setIsTranslationsLoaded(true);
     }
   }, [i18nInstance, defaultLang]);
 
